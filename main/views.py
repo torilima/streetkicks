@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def home(request):
+def show_main(request):
     context = {
         'app_name': 'StreetKicks',
         'your_name': 'Abelyvia Tori Rebecca Silalahi',
