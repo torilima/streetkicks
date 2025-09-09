@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-%nnsauz%lwqa74$$i9i*7torpsl6+38fjg*7t0z+h*95y_bs60
 PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "abelyvia-tori-streetkicks.pbp.cs.ui.ac.id"]
 
 
 # Application definition
@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'StreetKicks.urls'
+ROOT_URLCONF = 'streetkicks.urls'
 
 TEMPLATES = [
     {
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'StreetKicks.wsgi.application'
+WSGI_APPLICATION = 'streetkicks.wsgi.application'
 
 
 # Database
