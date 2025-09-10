@@ -1,5 +1,5 @@
 """
-WSGI config for StreetKicks project.
+WSGI config for streetkicks project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

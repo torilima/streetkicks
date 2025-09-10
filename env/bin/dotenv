@@ -1,4 +1,4 @@
-#!/Users/abelyviatori/Desktop/PBP/StreetKicks/env/bin/python3.12
+#!/Users/abelyviatori/Desktop/PBP/streetkicks/env/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys
