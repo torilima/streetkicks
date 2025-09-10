@@ -1,5 +1,5 @@
 """
-ASGI config for StreetKicks project.
+ASGI config for streetkicks project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
