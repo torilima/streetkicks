@@ -4,7 +4,7 @@ Cara saya mengimplementasikan checklist adalah pada umumnya saya mengikuti tutor
 mencoba memahami per stepnya, membaca ppt untuk lebih memahami MVT pada jango itu seperti apa , bertanya kepada 
 GPT untuk meminta penjelasan lebih lanjut tentang langkah demi langkah yang diberikan. 
 
-![alt text](<Your paragraph text.png>)
+![alt text](bagan.png)
 
 peran settings.py pada proyek ini adalah mengatur production untuk keamanan
 dan debugging, mengatur nama aplikasi django yang aktif dan akan digunakan 
