@@ -1,4 +1,3 @@
-# StreetKicks
 url pws : https://abelyvia-tori-streetkicks.pbp.cs.ui.ac.id/
 
 Cara saya mengimplementasikan checklist adalah pada umumnya saya mengikuti tutorial yang diberikan dengan 
