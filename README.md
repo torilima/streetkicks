@@ -1,5 +1,5 @@
 url pws : https://abelyvia-tori-streetkicks.pbp.cs.ui.ac.id/
-
+TUGAS 2
 Cara saya mengimplementasikan checklist adalah pada umumnya saya mengikuti tutorial yang diberikan dengan 
 mencoba memahami per stepnya, membaca ppt untuk lebih memahami MVT pada jango itu seperti apa , bertanya kepada 
 GPT untuk meminta penjelasan lebih lanjut tentang langkah demi langkah yang diberikan. 
@@ -29,3 +29,29 @@ alasan kenapa django dijadikan permulaan pembelajaran ini adalah
 feedback kepada asisten dosen untuk tutorial 1 :
 mungkin karena tutorial 1 masih bisa dibilang tidak terlalu kompleks jadi mudah dipahami dan tidak terlalu banyak kendala. namun, kemarin saya sempat mengalami 
 sedikit kendala dan langsung bertanya dan dibantu oleh kakak asdos untuk menyelesaikan masalah tersebut, terima kasih banyak kak, maaf kalau selama pengerjaan tugas2 ini agak banyak nanya huhuhu. 
+
+TUGAS 3
+1. Data delivery digunakan agar sebuah platform bisa melakukan pertukaran data antara client dan server. data delivery ini memungkinkan komunikasi dua arah 
+sehingga aplikasi bersifat lebih interaktif
+
+2. menurut saya, JSON lebih baik karena lebih ringan dan simple, support banyak bahasa pemrograman, XML lebih dapat digunakan jika data data yang digunakan lebih kompleks. saat ini, JSON lebih populer karena lebih efisien digunakan untuk API dan web service.
+
+3. is_valid digunakan untuk memvalidasi input form dimana django akan memeriksa apakah data form sudah sesuai . hal ini berguna untuk cek semua data yang masuk
+ke database sudah konsisten dan aman
+
+4. csrf_token ini adalah mekanisme proteksi yang dibuat terhadap cross site request forgery yang kalau tidak ditambahkan akan ada kemungkinan 
+user bisa mengirim request berbahaya pada server
+ 
+5. yang pertama saya melakukan sesuai di tutorial yaitu menambahkan fungsi views dan membuat fitur add product pada aplikasi lalu saya langsung mencoba untuk menjalankan keseluruhan nya di browser, ketika sudah berhasil saya baru melakukan pengembalian data pada xml json dan menambahkan url nya di urls.py dan 
+melakukan pengujian kepada setiap url yang ada, lalu saya menggunakan postman untuk cek hasilnya setelah itu membuat readme menjawab pertanyaan dan mencoba menjalankan lagi push ke github lalu push ke pws 
+
+6. tidak ada karena tugas kali ini gak banyak nanya kakak asdos,,, terima kasih banyak kaks
+
+
+![alt text](xml.png)
+
+![alt text](json.png)
+
+![alt text](<xml by id.png>)
+
+![alt text](<json by id.png>)
