@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block meta %}
-<title>Create Product - StreetKicks</title>
+<title>Edit Product - StreetKicks</title>
 {% endblock meta %}
 
 {% block content %}
@@ -9,23 +11,23 @@
     
     <!-- Back Navigation -->
     <div class="mb-6">
-      <a href="{% url 'main:show_main' %}" class="text-blue-600 hover:text-blue-900 font-medium transition-colors">
+      <a href="{% url 'main:show_main' %}" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">
         ← Back to Product
       </a>
     </div>
     
     <!-- Form -->
-    <div class="bg-white rounded-lg border border-blue-200 p-6 sm:p-8 form-style">
+    <div class="bg-white rounded-lg border border-blue-200 p-6 sm:p-8 form-style shadow-sm">
       <div class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900 mb-2">Create New Product</h1>
-        <p class="text-blue-600">Unleash Your Gear to the Community</p>
+        <h1 class="text-2xl font-bold text-blue-900 mb-2">Edit Product</h1>
+        <p class="text-blue-600">Level Up Your Kick</p>
       </div>
       
       <form method="POST" class="space-y-6">
         {% csrf_token %}
         {% for field in form %}
           <div>
-            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-blue-700 mb-2">
               {{ field.label }}
             </label>
             <div class="w-full">
@@ -44,8 +46,8 @@
           <a href="{% url 'main:show_main' %}" class="order-2 sm:order-1 px-6 py-3 border border-blue-300 text-blue-700 rounded-md font-medium hover:bg-blue-50 transition-colors text-center">
             Cancel
           </a>
-          <button type="submit" class="order-1 sm:order-2 flex-1 bg-[#032e66] text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors">
-            Publish Product
+          <button type="submit" class="order-1 sm:order-2 flex-1 bg-blue-800 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-900 transition-colors">
+            Update Product
           </button>
         </div>
       </form>
@@ -53,3 +55,4 @@
   </div>
 </div>
 {% endblock %}
+\

@@ -1,5 +1,26 @@
 url pws : https://abelyvia-tori-streetkicks.pbp.cs.ui.ac.id/
+============================================================================================================================================================
+Tugas 5
+1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+= prioritas pengambilan pada CSS adalah dimulai dari Inline Style dimana style langsung tertulis pada atribut style di HTML, lalu ada internal dan external style sheets yang dimana internal adalah tag <style> di dalam html dan external adalah file css yang terpisah, browser default dimana style yang sudah diberikan dari default browser yang digunakan 
 
+2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+= karena pengguna dapat mengakses dari berbagai ukuran layar (hp, tablet, laptop), meningkatkan conversion (jika pengguna mengalami pengalaman yang baik pada app, akan lebih banyak pengguna lain yang melakukan transaksi tersebut), pemeliharaan lebih mudah jika app bersifat adaptif. Aplikasi yang sudah menerapkan responsive design adalah X, Gmail. Aplikasi yang belum menerapkan responsive design seperti beberapa website pemerintahan. 
+
+3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+= margin adalah ruang kosong yang berada di paling luar, border adalah garis tepi yang membungkus keseluruhan konten, padding adalah ruang transparan di sekitar konten. cara mengimplementasikan ketiganya adalah margin diimplementasikan dengan menambahkan properti bernama margin seperti margin : 20px berarti 
+elemen akan memiliki jarak sebanyak 20px dengan elemen lainnya, border bisa diatur ketebalan jenis garis dan warnanya dengan menambahkan di kode
+border: 3px solid blue; yang berarti border setebal 3px dengan jenis garis solid dan warna blue, implementasi padding kurang lebih seperti margin padding: 15px; yang berarti ada ruang 15px antara teks/gambar dengan border
+
+4.  Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+= Flexbox adalah model layout di CSS yang dirancang untuk mengatur elemen dalam satu dimensi  bisa horizontal atau vertikal. kegunaan flexbox adalah membuat 
+layout responsif dengan mudah, mengatur alignment layout, dan mengatur distribusi ruang pada elemen. 
+Grid adalah model layout dua dimensi yang memungkinkan kita mengatur elemen berdasarkan baris dan kolom. kegunaan grid adalah membuat layout dua dimensi (baris dan kolom sekaligus) dan memudahkan pengaturan elemen dalam bentuk grid responsif. 
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+= pertama saya mengimplementasikan tailwind ke code saya, lalu menambahkan beberapa fitur seperti edit dan delete product, kemudian saya menambahkan navigation bar yaitu home dan create product, kemudian saya mulai mendesain dengan css dan implementasi ke html saya. saya juga merubah color palette dari website saya kali ini, dan tadinya ada problem dimana product name description price dan stock tidak muncul kemudian saya mengedit bagian dari product detail untuk memunculkan elemen tersebut, lalu ada juga saya mengubah besar dari thumbnail dan description box pada website saya. 
+
+============================================================================================================================================================
 Tugas 2
 Cara saya mengimplementasikan checklist adalah pada umumnya saya mengikuti tutorial yang diberikan dengan 
 mencoba memahami per stepnya, membaca ppt untuk lebih memahami MVT pada jango itu seperti apa , bertanya kepada 
@@ -30,6 +51,7 @@ alasan kenapa django dijadikan permulaan pembelajaran ini adalah
 feedback kepada asisten dosen untuk tutorial 1 :
 mungkin karena tutorial 1 masih bisa dibilang tidak terlalu kompleks jadi mudah dipahami dan tidak terlalu banyak kendala. namun, kemarin saya sempat mengalami 
 sedikit kendala dan langsung bertanya dan dibantu oleh kakak asdos untuk menyelesaikan masalah tersebut, terima kasih banyak kak, maaf kalau selama pengerjaan tugas2 ini agak banyak nanya huhuhu. 
+============================================================================================================================================================
 
 Tugas 4
 1. Apa itu Django AuthenticationForm? Jelaskan juga kelebihan dan kekurangannya.
