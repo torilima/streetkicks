@@ -12,6 +12,12 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.template.defaultfilters import truncatewords
+import requests
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.html import strip_tags
+import json
+from django.http import JsonResponse
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -59,6 +65,7 @@ def show_xml(request):
     xml_data = serializers.serialize("xml", product_list)
     return HttpResponse(xml_data, content_type="application/xml")
 
+
 def show_json(request):
     product_list = Product.objects.all()
     data = [
@@ -68,9 +75,9 @@ def show_json(request):
             'price': product.price,
             'stok': product.stok,
             'description': product.description,
-            'thumbnail' : product.thumbnail,
+            'thumbnail': product.thumbnail,
             'product_views': product.product_views,
-            'created_at': product.created_at.isoformat() if Product.created_at else None,
+            'created_at': product.created_at.isoformat() if product.created_at else None,
             'is_featured': product.is_featured,
             'user_id': product.user_id,
         }
@@ -78,6 +85,7 @@ def show_json(request):
     ]
 
     return JsonResponse(data, safe=False)
+
 
 def show_xml_by_id(request, id):
    try:
@@ -160,20 +168,8 @@ def delete_product(request, id):
     product.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
 
-@login_required
-@require_POST # Hanya izinkan metode POST untuk keamanan
-def delete_product_ajax(request, id):
-    product = get_object_or_404(Product, pk=id)
-
-    # Validasi: Pastikan hanya pemilik produk yang bisa menghapus
-    if product.user != request.user:
-        return JsonResponse({'status': 'error', 'message': 'You are not authorized to delete this product.'}, status=403)
-
-    product.delete()
-    return JsonResponse({'status': 'success', 'message': 'Product deleted successfully.'})
-
-@csrf_exempt
 @require_POST
+@ csrf_exempt
 def add_product_ajax(request):
     if request.method == 'POST':
         name = request.POST.get("name")
@@ -194,7 +190,100 @@ def add_product_ajax(request):
             user=user
         )
         new_product.save()
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
+    
 
+@login_required
+def edit_product_ajax(request, id):
+    product = get_object_or_404(Product, id=id, user=request.user)
+
+    if request.method == 'POST':
+        # 3. GUNAKAN FORM UNTUK MENGELOLA DATA
+        # Ini akan mengambil data dari request.POST dan menempelkannya ke 'instance' produk yang ada
+        form = ProductForm(request.POST, instance=product)
+        
+        if form.is_valid():
+            # 4. CUKUP PANGGIL form.save()
+            product = form.save() # Form akan meng-update produk yang ada
+
+            # Kirim balik data produk yang baru untuk update UI
+            return JsonResponse({
+                'status': 'success', 
+                'product': {
+                    'id': product.id,
+                    'name': product.name,
+                    'price': product.price,
+                    'stok': product.stok,
+                    'description': product.description,
+                    'description_truncated': truncatewords(product.description, 20),
+                    'category': product.category,
+                    'category_display': product.get_category_display(),
+                    'thumbnail': product.thumbnail,
+                }
+            })
+        else:
+            # Jika form tidak valid (misal: harga bukan angka), kirim error
+            return JsonResponse({'status': 'fail', 'message': 'Data tidak valid', 'errors': form.errors}, status=400)
+    
+    return JsonResponse({'status': 'fail', 'message': 'Invalid request method'}, status=400)
+
+
+# View untuk menangani DELETE via AJAX
+@login_required
+def delete_product_ajax(request, id):
+    product = get_object_or_404(Product, id=id, user=request.user)
+    
+    if request.method == 'POST':
+        product.delete()
+        return JsonResponse({'status': 'success', 'message': 'Produk berhasil dihapus'})
+    
+    return JsonResponse({'status': 'fail', 'message': 'Invalid request method'}, status=400)
+
+def proxy_image(request):
+    image_url = request.GET.get('url')
+    if not image_url:
+        return HttpResponse('No URL provided', status=400)
+    
+    try:
+        # Fetch image from external source
+        response = requests.get(image_url, timeout=10)
+        response.raise_for_status()
+        
+        # Return the image with proper content type
+        return HttpResponse(
+            response.content,
+            content_type=response.headers.get('Content-Type', 'image/jpeg')
+        )
+    except requests.RequestException as e:
+        return HttpResponse(f'Error fetching image: {str(e)}', status=500)
+    
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        name = strip_tags(data.get("name", ""))  # Strip HTML tags
+        price = data.get("price", 0)
+        stok = data.get("stok", 0)
+        description = strip_tags(data.get("description", ""))  # Strip HTML tags
+        category = data.get("category", "")
+        thumbnail = data.get("thumbnail", "")
+        is_featured = data.get("is_featured", False)
+        user = request.user
+        
+        new_products = Product(
+            name=name, 
+            price=price,
+            stok=stok,
+            description=description,
+            category=category,
+            thumbnail=thumbnail,
+            is_featured=is_featured,
+            user=user
+        )
+        new_products.save()
+        
         return JsonResponse({"status": "success"}, status=200)
     else:
         return JsonResponse({"status": "error"}, status=401)

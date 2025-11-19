@@ -1,33 +1,28 @@
 {% extends 'base.html' %}
-{% load static %}
-
 {% block meta %}
 <title>Edit Product - StreetKicks</title>
 {% endblock meta %}
 
 {% block content %}
-<div class="bg-blue-50 w-full min-h-screen">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+{% include 'navbar.html' %} <div class="bg-blue-50 w-full min-h-screen pt-16"> <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     
-    <!-- Back Navigation -->
     <div class="mb-6">
-      <a href="{% url 'main:show_main' %}" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">
+      <a href="{% url 'main:show_main' %}" class="text-blue-600 hover:text-blue-900 font-medium transition-colors">
         ← Back to Product
       </a>
     </div>
     
-    <!-- Form -->
     <div class="bg-white rounded-lg border border-blue-200 p-6 sm:p-8 form-style shadow-sm">
       <div class="mb-8">
-        <h1 class="text-2xl font-bold text-blue-900 mb-2">Edit Product</h1>
-        <p class="text-blue-600">Level Up Your Kick</p>
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Edit Product</h1>
+        <p class="text-blue-600">Update your product details below</p>
       </div>
       
       <form method="POST" class="space-y-6">
         {% csrf_token %}
         {% for field in form %}
           <div>
-            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-blue-700 mb-2">
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
               {{ field.label }}
             </label>
             <div class="w-full">
@@ -46,13 +41,36 @@
           <a href="{% url 'main:show_main' %}" class="order-2 sm:order-1 px-6 py-3 border border-blue-300 text-blue-700 rounded-md font-medium hover:bg-blue-50 transition-colors text-center">
             Cancel
           </a>
-          <button type="submit" class="order-1 sm:order-2 flex-1 bg-blue-800 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-900 transition-colors">
-            Update Product
+          <button type="submit" class="order-1 sm:order-2 flex-1 bg-[#032e66] text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition-colors">
+            Save Changes
           </button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Mencari semua input form
+        const inputs = document.querySelectorAll("input:not([type='checkbox']), textarea, select");
+        
+        inputs.forEach(input => {
+            // Menambahkan style Tailwind agar sama dengan tema StreetKicks
+            input.classList.add(
+                "w-full", 
+                "rounded-md", 
+                "border", 
+                "border-gray-300", 
+                "px-3", 
+                "py-2", 
+                "focus:outline-none", 
+                "focus:ring-2", 
+                "focus:ring-blue-500", 
+                "focus:border-blue-500",
+                "transition-colors"
+            );
+        });
+    });
+</script>
 {% endblock %}
-\

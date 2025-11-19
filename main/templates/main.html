@@ -16,9 +16,10 @@
       <p class="text-blue-600">Stay Laced with the Latest</p>
     </div>
 
-    <button onclick="showModal()" class="inline-flex items-center px-4 py-2 bg-white text-blue-800 font-semibold outline outline-2 outline-blue-800 outline-offset-[-2px] rounded-md hover:bg-blue-800 hover:text-white transition-colors mb-4">
+    <a href="{% url 'main:create_product' %}" 
+       class="js-load-create-form inline-flex items-center px-4 py-2 bg-white text-blue-800 font-semibold outline outline-2 outline-blue-800 outline-offset-[-2px] rounded-md hover:bg-blue-800 hover:text-white transition-colors mb-4">
       Create Product
-    </button>
+    </a>
     
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 bg-white rounded-lg border border-blue-200 p-4">
       <div class="flex space-x-3 mb-4 sm:mb-0">
@@ -56,11 +57,34 @@
 
   </div>
 </div>
+
+<div id="myModal" class="hidden fixed z-[100] inset-0 overflow-y-auto"> <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    
+    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+      <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+    
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+    
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      
+      <div id="modal-content-container">
+        <p class="p-8 text-center">Loading form...</p>
+      </div>
+
+        <button type="button" 
+          onclick="document.getElementById('myModal').classList.add('hidden')"
+          class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"></button>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
 
 {% block scripts %}
 <script>
-// --- KESELURUHAN SCRIPT DIPERBAIKI DAN DIBERSIHKAN ---
 
 // Configuration
 const PRODUCT_API_ENDPOINT = "{% url 'main:show_json' %}";
@@ -114,7 +138,7 @@ function buildProductCardElement(productItem) { // Parameter diperbaiki: product
   const deleteLink = `{% url 'main:delete_product' '0' %}`.replace('0', productItem.pk);
 
   const fields = productItem.fields;
-  const formattedDate = new Date(fields.created_at).toLocaleDateString('en-US', { 
+  const formattedDate = new Date(fields.created_at).toLocaleString('en-US', { 
     year: 'numeric', month: 'short', day: 'numeric' 
   });
 

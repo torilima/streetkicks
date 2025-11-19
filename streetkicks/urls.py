@@ -19,4 +19,5 @@ from django.urls import path, include  # include untuk routing aplikasi
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),   # arahkan root ke aplikasi main
+    path('auth/', include('authentication.urls')),
 ]
